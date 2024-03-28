@@ -1,6 +1,6 @@
 <template>
   <div style="text-align: center;">
-    <h2>你好！{{ userInfo.username }} 同学</h2>
+    <h2>你好！{{ userInfo.username }}</h2>
 
     <el-form :model="passForm" status-icon :rules="rules" ref="passForm" label-width="100px">
       <el-form-item label="旧密码" prop="currentPass">
@@ -23,7 +23,7 @@
 <script>
 export default {
   name: "UserCenter",
-  data() {
+  data () {
     var validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入密码'));
@@ -56,17 +56,17 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.getUserInfo()
   },
   methods: {
-    getUserInfo() {
+    getUserInfo () {
       this.$axios.get("/sys/userInfo").then(res => {
 
         this.userInfo = res.data.data;
       })
     },
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
 
@@ -86,7 +86,7 @@ export default {
         }
       });
     },
-    resetForm(formName) {
+    resetForm (formName) {
       this.$refs[formName].resetFields();
     }
   }

@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <canvas id="draw"  style="position: fixed; width: 100vw; height: 100vh; z-index: 0; display: block">
+    <canvas id="draw" style="position: fixed; width: 100vw; height: 100vh; z-index: 0; display: block">
       当前浏览器不支持Canvas，请更换浏览器后再试
     </canvas>
-    <el-row type="flex" class="row-bg" justify="center">
-      <el-col :xl="6" :lg="7">
+    <el-row type="flex" class="row-bg loginBox" justify="center">
+      <!-- <el-col :xl="6" :lg="7">
         <div id="top">
           <el-image style="vertical-align: middle;" :src="require('@/assets/top.png')"></el-image>
           <span>广东海洋大学体育馆管理系统</span>
@@ -13,15 +13,17 @@
       </el-col>
       <el-col :span="1">
         <el-divider direction="vertical"></el-divider>
-      </el-col>
+      </el-col> -->
       <el-col :xl="6" :lg="7">
-        <el-image :src="require('@/assets/Gdou.png')" style="width: 100px; height: 100px;"></el-image>
-        <p style="font-size: 14px; font-weight: 400; color: #8bd2f4">广东海洋大学</p>
+        <el-form style="display: flex; align-items: center; justify-content: center;">
+          <el-image :src="require('@/assets/Gdou.png')" style="width: 40px; height: 40px; margin-right: 4px;"></el-image>
+          <p style="font-size: 28px; font-weight: 400; color: black">体育馆管理系统</p>
+        </el-form>
         <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="80px">
-          <el-form-item label="用户名" prop="username" style="width: 380px;">
+          <el-form-item label="用户名" prop="username" style="width: 360px;">
             <el-input v-model="loginForm.username"></el-input>
           </el-form-item>
-          <el-form-item label="密 码" prop="password" style="width: 380px;">
+          <el-form-item label="密 码" prop="password" style="width: 360px;">
             <el-input v-model="loginForm.password" type="password"></el-input>
           </el-form-item>
           <el-form-item label="验证码" prop="code" style="width: 380px;">
@@ -29,7 +31,7 @@
             <el-image :src="captchaImg" class="captchaImg" @click="getCaptcha"></el-image>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+            <el-button type="primary" style="margin-left: -40px;" @click="submitForm('loginForm')">登录</el-button>
             <el-button @click="resetForm('loginForm')">重置</el-button>
           </el-form-item>
         </el-form>
@@ -42,7 +44,7 @@
 import qs from 'qs';
 export default {
   name: "Login",
-  data() {
+  data () {
     return {
       loginForm: {
         username: '',
@@ -65,25 +67,25 @@ export default {
       captchaImg: null
     };
   },
-  created() {
+  created () {
     this.getCaptcha();
   },
-  mounted() {
+  mounted () {
     this.draw();
   },
   methods: {
-    draw(){
+    draw () {
       let canvas = document.querySelector("#draw")
       let yuan = canvas.getContext("2d");
       let arr = [];
       window.onresize = resizeCanvas;
-      function resizeCanvas() {
+      function resizeCanvas () {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
       resizeCanvas();
       /* 绘制小圆形的方法，x与y是初始位置，r是圆半径 */
-      function circle(x, y, r) {
+      function circle (x, y, r) {
         this.x = x;
         this.y = y;
         this.r = r;
@@ -145,12 +147,12 @@ export default {
         }
       }, 30);
     },
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios.post('/login?' + qs.stringify(this.loginForm)).then(res => {
             const jwt = res.headers['authorization'];
-            this.$store.commit('SET_TOKEN',jwt);
+            this.$store.commit('SET_TOKEN', jwt);
             this.$router.push("/index");
           }).catch(res => {
             this.getCaptcha();
@@ -160,10 +162,10 @@ export default {
         }
       });
     },
-    resetForm(formName) {
+    resetForm (formName) {
       this.$refs[formName].resetFields();
     },
-    getCaptcha(){
+    getCaptcha () {
       this.$axios.get('/captcha').then(res => {
         this.loginForm.key = res.data.data.key;
         this.captchaImg = res.data.data.captchaImg;
@@ -175,46 +177,61 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.container {
   display: flex;
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
-  background-color: #f1f2f6;
+  background: url("../assets/login1.jpg") no-repeat;
+  background-size: 100% 130%;
 }
-.el-row{
+.el-row {
   background-color: #f1f2f6;
   display: flex;
   align-items: center;
   text-align: center;
 }
 
-.el-row .el-col:nth-child(1){
+.el-row .el-col:nth-child(1) {
   flex: 45%;
 }
-.el-row .el-col:nth-child(2){
+.el-row .el-col:nth-child(2) {
   flex: 10%;
 }
-.el-row .el-col:nth-child(3){
+.el-row .el-col:nth-child(3) {
   flex: 45%;
   margin-left: -20px;
 }
 
-.el-divider{
+.el-divider {
   height: 380px;
 }
-.captchaImg{
+.captchaImg {
   float: left;
   margin-left: 8px;
   border-radius: 4px;
 }
-#top{
+#top {
   padding-bottom: 20px;
   text-align: left;
 }
-#top span{
+#top span {
   font-size: 20px;
   color: rgb(2, 167, 240);
+}
+.loginBox {
+  background-color: #f4f2f2;
+  text-align: center;
+  border-radius: 10px;
+  padding: 50px 50px;
+  opacity: 0.88;
+  padding: 40px;
+}
+.el-button {
+  width: 100px;
+}
+.el-button--primary {
+  width: 100px;
 }
 </style>

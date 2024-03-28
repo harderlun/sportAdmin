@@ -5,7 +5,7 @@
  Source Server Type    : MySQL
  Source Server Version : 80019
  Source Host           : localhost:3306
- Source Schema         : yu-auth
+ Source Schema         : sanshao-auth
 
  Target Server Type    : MySQL
  Target Server Version : 80019

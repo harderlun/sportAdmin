@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <noticeComponent v-if="notice" :text="notice" @click="openTip"/>
+    <noticeComponent v-if="notice" :text="notice" @click="openTip" />
     <div class="left-notice">
       <el-tabs style="float: left" type="border-card">
         <el-tab-pane v-for="place in this.placeList" :key="place" :label="place.place">
@@ -19,7 +19,7 @@
           <el-button style="float: right; cursor: pointer; padding: 3px 0" type="text">更多</el-button>
         </div>
         <div v-for="notice in this.noticeList.slice(0,4)" class="text item" @click="toNoticeDetail(notice.id)">
-          <span class="title" >{{ notice.title.length > 30 ? notice.title.substring(0, 30) + "..." : notice.title }}</span>
+          <span class="title">{{ notice.title.length > 30 ? notice.title.substring(0, 30) + "..." : notice.title }}</span>
           <span class="time">{{ dateFormat(notice.created) }}</span>
         </div>
       </el-card>
@@ -33,11 +33,7 @@
           <span><i></i>可预约</span>
           <span><i></i>不可用</span>
           <el-select v-model="curDate" @change="ChangeDate">
-            <el-option
-                v-for="placeState in this.placeStateList"
-                :key="placeState.id"
-                :label="placeState.date"
-                :value="placeState.id">
+            <el-option v-for="placeState in this.placeStateList" :key="placeState.id" :label="placeState.date" :value="placeState.id">
             </el-option>
           </el-select>
         </div>
@@ -46,61 +42,61 @@
           <div class="placeTime">
             <span>场地</span>
             <span>8:00 <br>
-            ~<br>
+              ~<br>
               9:00
             </span>
             <span>9:00 <br>
-            ~<br>
+              ~<br>
               10:00
             </span>
             <span>10:00 <br>
-            ~<br>
+              ~<br>
               11:00
             </span>
             <span>11:00 <br>
-            ~<br>
+              ~<br>
               12:00
             </span>
             <span>12:00 <br>
-            ~<br>
+              ~<br>
               13:00
             </span>
             <span>13:00 <br>
-            ~<br>
+              ~<br>
               14:00
             </span>
             <span>14:00 <br>
-            ~<br>
+              ~<br>
               15:00
             </span>
             <span>15:00 <br>
-            ~<br>
+              ~<br>
               16:00
             </span>
             <span>16:00 <br>
-            ~<br>
+              ~<br>
               17:00
             </span>
             <span>17:00 <br>
-            ~<br>
+              ~<br>
               18:00
             </span>
             <span>18:00 <br>
-            ~<br>
+              ~<br>
               19:00
             </span>
             <span>19:00 <br>
-            ~<br>
+              ~<br>
               20:00
             </span>
           </div>
           <div v-for="vdState in this.placeStateList[this.dateIndex].vdstateList" class="bd">
             <span>{{ vdState.placeName }}</span>
             <span v-for="idx in vdState.vdstatest.length" :key="idx">
-                <i v-if="vdState.vdstatest.substring(idx - 1, idx) == 0 && !hasAuth('sys:appointment:forbid')" @click="orderPlace(idx,vdState.placeName,vdState.placeid,vdState.vdstatedate,vdState.id)" style="background-color: #34bfa7;border-color: #34bfa7"></i>
-                <i v-if="vdState.vdstatest.substring(idx - 1, idx) == 0 && hasAuth('sys:appointment:forbid')" @click="sysOrder(idx,vdState.placeName,vdState.placeid,vdState.vdstatedate,vdState.id)" style="background-color: #34bfa7;border-color: #34bfa7"></i>
-                <i v-if="vdState.vdstatest.substring(idx - 1, idx) == 1" style="background-color:#ccc;" @click="notOrder()"></i>
-                <i v-if="vdState.vdstatest.substring(idx - 1, idx) == 2" style="background-color:#bf8f43; border-color: #bf8f43" @click="notOrder()"></i>
+              <i v-if="vdState.vdstatest.substring(idx - 1, idx) == 0 && !hasAuth('sys:appointment:forbid')" @click="orderPlace(idx,vdState.placeName,vdState.placeid,vdState.vdstatedate,vdState.id)" style="background-color: #34bfa7;border-color: #34bfa7"></i>
+              <i v-if="vdState.vdstatest.substring(idx - 1, idx) == 0 && hasAuth('sys:appointment:forbid')" @click="sysOrder(idx,vdState.placeName,vdState.placeid,vdState.vdstatedate,vdState.id)" style="background-color: #34bfa7;border-color: #34bfa7"></i>
+              <i v-if="vdState.vdstatest.substring(idx - 1, idx) == 1" style="background-color:#ccc;" @click="notOrder()"></i>
+              <i v-if="vdState.vdstatest.substring(idx - 1, idx) == 2" style="background-color:#bf8f43; border-color: #bf8f43" @click="notOrder()"></i>
             </span>
           </div>
         </div>
@@ -113,17 +109,14 @@
           <el-button style="float: right; cursor: pointer; padding: 3px 0" type="text">更多</el-button>
         </router-link>
         <div style="margin-top: 10px;">
-          <div v-for="competition in this.competitionList.slice(0,4)" class="competition"
-               @click="toDetail(competition.id)">
+          <div v-for="competition in this.competitionList.slice(0,4)" class="competition" @click="toDetail(competition.id)">
             <el-image :src="competition.url" class="competition_photo"></el-image>
             <div>
               <div style="font-size: 14px;">
                 <el-tag type="success">最新发布</el-tag>
                 <span>
                   <el-tag v-if="new Date() < new Date(competition.starttime)" type="warning">报名中...</el-tag>
-                  <el-tag
-                      v-else-if="new Date(competition.starttime) <= new Date() && new Date() <= new Date(competition.endtime)"
-                      type="success">比赛中...</el-tag>
+                  <el-tag v-else-if="new Date(competition.starttime) <= new Date() && new Date() <= new Date(competition.endtime)" type="success">比赛中...</el-tag>
                   <el-tag v-else>比赛结束</el-tag>
                 </span>
                 {{ competition.name }}
@@ -132,8 +125,7 @@
                 {{ '创建人: ' + competition.username }}
               </div>
               <div>
-                <el-button v-if="new Date() < new Date(competition.starttime) && competition.applyStatus === 1"
-                           class="apply">立即报名
+                <el-button v-if="new Date() < new Date(competition.starttime) && competition.applyStatus === 1" class="apply">立即报名
                 </el-button>
                 <el-button v-if="competition.applyStatus === 0" style="background-color:#ccc;" class="apply">已报名</el-button>
               </div>
@@ -143,7 +135,7 @@
       </div>
     </el-card>
     <el-card style="width: 98%;margin-bottom: 50px">
-      <div slot="header" class="clearfix" >
+      <div slot="header" class="clearfix">
         <span>器材</span>
         <router-link to='/user/equipment'>
           <el-button style="float: right; cursor: pointer; padding: 3px 0" type="text">更多</el-button>
@@ -151,11 +143,7 @@
       </div>
       <div id="echarts1"></div>
     </el-card>
-    <el-dialog
-        title="预约"
-        :visible.sync="dialogVisible"
-        width="600px"
-        :before-close="handleClose">
+    <el-dialog title="预约" :visible.sync="dialogVisible" width="600px" :before-close="handleClose">
       <el-form :model="orderForm" ref="orderForm">
         <el-form-item label="预约状态" prop="title" label-width="100px">
           <el-radio v-model="orderForm.radio" label="2">预约</el-radio>
@@ -178,7 +166,7 @@ export default {
   components: {
     noticeComponent
   },
-  data() {
+  data () {
     return {
       notice: '公告：',
       activeName: 'first',
@@ -199,28 +187,28 @@ export default {
       userId: 0
     }
   },
-  created() {
+  created () {
     this.userId = localStorage.getItem("userId");
     this.getUserCompetitionList();
     this.getNoticeList();
     this.getPlaceList();
     this.getPlaceStateList();
   },
-  mounted() {
+  mounted () {
     setTimeout(() => {
       this.getEquipmentList();
-    },100);
+    }, 100);
     this.handleMsg();
   },
   methods: {
     //实时获取echarts的数据
-    handleMsg() {
+    handleMsg () {
       this.$globalWebSocket.ws.onmessage = this.getMessage
     },
-    getMessage(e) {
+    getMessage (e) {
       this.getEquipmentList();
     },
-    sysOrder(idx,placeName,placeId,orderDate,placeStateId){
+    sysOrder (idx, placeName, placeId, orderDate, placeStateId) {
       this.dialogVisible = true;
       this.orderForm = {
         placeid: placeId,
@@ -232,39 +220,39 @@ export default {
         placeStateId: placeStateId
       }
     },
-    notOrder(){
+    notOrder () {
       this.$message({
         type: 'error',
         message: '不可预约!',
       });
     },
-    sysOrderPlace(){
-      if (this.orderForm.radio != 1 || this.orderForm.radio != 2){
+    sysOrderPlace () {
+      if (this.orderForm.radio != 1 && this.orderForm.radio != 2) {
         this.$message({
           type: 'error',
           message: '请选择预约状态',
         });
         return;
       }
-      this.$axios.post("/appointment/order",this.orderForm).then(res => {
+      this.$axios.post("/appointment/order", this.orderForm).then(res => {
         this.$message({
           type: 'success',
           message: '预约成功!',
-          onClose:() => {
+          onClose: () => {
             this.getPlaceStateList()
           }
         });
         this.dialogVisible = false;
       })
     },
-    resetForm() {
+    resetForm () {
       this.dialogVisible = false;
     },
-    handleClose() {
+    handleClose () {
       this.resetForm()
     },
-    orderPlace(idx,placeName,placeId,orderDate,placeStateId){
-      this.$confirm(`是否预约${(idx+7)}:00~${(idx+8)}:00的${placeName}？`, '预约场地', {
+    orderPlace (idx, placeName, placeId, orderDate, placeStateId) {
+      this.$confirm(`是否预约${(idx + 7)}:00~${(idx + 8)}:00的${placeName}？`, '预约场地', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -279,22 +267,22 @@ export default {
           placeStateId: placeStateId,
           radio: 2
         }
-        this.$axios.post("/appointment/order",this.orderForm).then(res => {
+        this.$axios.post("/appointment/order", this.orderForm).then(res => {
           this.$message({
             type: 'success',
             message: '预约成功!',
-            onClose:() => {
+            onClose: () => {
               this.getPlaceStateList()
             }
           });
         })
       })
     },
-    ChangeDate(id) {
+    ChangeDate (id) {
       this.curDate = this.placeStateList[id].date;
       this.dateIndex = this.placeStateList[id].id;
     },
-    getPlaceStateList() {
+    getPlaceStateList () {
       this.$axios.get("/place/vdstate/getPlaceState").then(res => {
         this.placeStateList = res.data.data.placeDateStateList;
         for (let i = 0; i < this.placeStateList.length; i++) {
@@ -306,37 +294,37 @@ export default {
         }
       })
     },
-    initChart() {
+    initChart () {
       this.option = {
         legend: {},
         tooltip: {},
         dataset: {
           source: this.source
         },
-        xAxis: {type: 'category'},
+        xAxis: { type: 'category' },
         yAxis: {},
-        series: [{type: 'bar'}, {type: 'bar'}]
+        series: [{ type: 'bar' }, { type: 'bar' }]
       };
       this.option && this.myChart.setOption(this.option);
     },
-    toDetail(id) {
+    toDetail (id) {
       sessionStorage.setItem("competitionId", id);
       this.$router.push({
         path: '/user/competitionDetail'
       })
     },
-    toNoticeDetail(id){
+    toNoticeDetail (id) {
       sessionStorage.setItem("noticeId", id);
       this.$router.push({
         path: '/notice/Details'
       })
     },
-    openTip() {
+    openTip () {
     },
-    handleClick(tab, event) {
+    handleClick (tab, event) {
       console.log(tab, event);
     },
-    getUserCompetitionList() {
+    getUserCompetitionList () {
       this.$axios.get("/sys/userInfo").then(res => {
         let id = res.data.data.id;
         this.$axios.get("/competition/getCompetitionList/" + id).then(res => {
@@ -344,7 +332,7 @@ export default {
         })
       })
     },
-    getEquipmentList() {
+    getEquipmentList () {
       this.$axios.get('/equipment/list').then(res => {
         console.log(res.data.data.pageData.records);
         for (let i = 0; i < res.data.data.pageData.records.length; i++) {
@@ -361,7 +349,7 @@ export default {
         });
       })
     },
-    getNoticeList() {
+    getNoticeList () {
       this.$axios.get('/notice/list').then(res => {
         this.noticeList = res.data.data.pageData.records;
         for (let i = 0; i < this.noticeList.length; i++) {
@@ -369,18 +357,18 @@ export default {
         }
       })
     },
-    getPlaceList() {
+    getPlaceList () {
       this.$axios.get('/place/list').then(res => {
         this.placeList = res.data.data.placeList;
       })
     },
-    dateFormat(time) {
+    dateFormat (time) {
       let date = new Date(time);
       let year = date.getFullYear();
       let month =
-          date.getMonth() + 1 < 10
-              ? "0" + (date.getMonth() + 1)
-              : date.getMonth() + 1;
+        date.getMonth() + 1 < 10
+          ? "0" + (date.getMonth() + 1)
+          : date.getMonth() + 1;
       let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
       return (year + "-" + month + "-" + day);
     },
@@ -430,7 +418,6 @@ export default {
   display: flex;
   width: 100%;
   background-color: #f2f2f2;
-
 }
 /*每个时间段flex：1*/
 .placeTime span {
@@ -469,7 +456,7 @@ export default {
   height: 60%;
   border: 2px solid #ccc;
   cursor: pointer;
-  transition: all .2s linear;
+  transition: all 0.2s linear;
 }
 /*表格颜色按钮缩放效果*/
 .bd span i:hover {
@@ -506,19 +493,18 @@ export default {
   width: 55%;
 }
 
-
 .text {
   font-size: 14px;
-  transition: all .5s linear;
+  transition: all 0.5s linear;
 }
 /*每一条公告缩放特效*/
-.text:hover{
+.text:hover {
   cursor: pointer;
   transform: scale(1.03);
 }
 /*鼠标悬停公告，标题变色，时间不变色*/
-.text:hover span:first-child{
-  color: #409EFF;
+.text:hover span:first-child {
+  color: #409eff;
 }
 
 /*赛事部分*/
@@ -527,17 +513,17 @@ export default {
   cursor: pointer;
   margin: 20px;
   width: 260px;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 }
 .competition:hover {
   transform: scale(1.03);
-  color: #409EFF;
+  color: #409eff;
 }
 .competition_photo {
   width: 260px;
   height: 210px;
   border-radius: 15px;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
   margin-bottom: 10px;
 }
 
@@ -583,10 +569,11 @@ export default {
 }
 
 .clearfix:after {
-  clear: both
+  clear: both;
 }
 
-.box-competition , .box-appointment{
+.box-competition,
+.box-appointment {
   margin: 30px 0;
 }
 

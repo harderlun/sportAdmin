@@ -1,10 +1,9 @@
 <template>
-  <el-menu
-      :default-active="this.$store.state.menus.editableTabsValue"
-      class="el-menu-vertical-demo"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b" :collapse="isCollapse">
+  <el-menu :default-active="this.$store.state.menus.editableTabsValue" class="el-menu-vertical-demo" background-color="#001529" text-color="#fff" :collapse="isCollapse">
+    <div>
+      <div class="title"><img src="../../assets/Gdou.png">体育馆管理系统
+      </div>
+    </div>
     <router-link to="/index">
       <el-menu-item index="index" @click="selectMenu({name: 'index',title: '首页'})">
         <i class="el-icon-s-home"></i>
@@ -39,7 +38,7 @@
     </router-link>
     <el-submenu :index="menu.name" v-for="(menu,index) in menuList" :key="index">
       <template slot="title">
-        <i :class="menu.icon" ></i>
+        <i :class="menu.icon"></i>
         <span class="title">{{menu.title}}</span>
       </template>
       <router-link :to="item.path" v-for="(item,index) in menu.children" :key="index">
@@ -51,34 +50,32 @@
         </el-menu-item>
       </router-link>
     </el-submenu>
-    <el-menu-item style="overflow: hidden;">
-      <div style="width: 200px;" @click="changeCollapse()">
-        <i class="el-icon-caret-right"  v-model="isCollapse"></i>
-      </div>
-    </el-menu-item>
+    <div class="kongzhi" style="width: 200px;">
+      <!-- <i class="el-icon-caret-right" v-model="isCollapse"></i> @click="changeCollapse()" -->
+    </div>
   </el-menu>
 </template>
 
 <script>
 export default {
   name: "SideMenu",
-  data(){
-    return{
+  data () {
+    return {
       isCollapse: false
     }
   },
   computed: {
     menuList: {
-      get(){
+      get () {
         return this.$store.state.menus.menuList
       }
     }
   },
   methods: {
-    selectMenu(item){
-      this.$store.commit("addTab",item);
+    selectMenu (item) {
+      this.$store.commit("addTab", item);
     },
-    changeCollapse(){
+    changeCollapse () {
       this.isCollapse = !this.isCollapse;
     }
   }
@@ -86,42 +83,31 @@ export default {
 </script>
 
 <style scoped>
-
-
-.el-menu-vertical-demo{
+.el-menu-vertical-demo {
   height: 100%;
 }
-.el-submenu:hover .title{
-  color: #409EFF!important;
-}
-.el-submenu:hover .el-icon-s-operation{
-  color: #409EFF!important;
-}
-.el-submenu:hover .el-icon-baseball{
-  color: #409EFF!important;
-}
-.el-submenu:hover .el-icon-location-outline{
-  color: #409EFF!important;
-}
-.el-submenu:hover .el-icon-s-tools{
-  color: #409EFF!important;
-}
-.el-menu-item{
-  transition: all .3s linear;
-}
-.el-menu-item:hover i{
-  color: #409EFF!important;
-}
-.el-menu-item:hover{
-  color: #409EFF!important;
-}
-.el-menu-item:hover{
-  transform: scale(1.06);
-}
-a{
+
+a {
   text-decoration: none;
 }
-.router-link-active{
+.router-link-active {
   text-decoration: none;
+}
+.title {
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  line-height: 60px;
+  width: 100%;
+  color: white;
+}
+.title img {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  margin: 10px 10px 0px;
+  vertical-align: top;
 }
 </style>

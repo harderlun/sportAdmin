@@ -18,7 +18,7 @@ public class CodeGenerator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
 
-        gc.setOutputDir("D:\\IdeaProjects\\yu-auth" + "/src/main/java");
+        gc.setOutputDir("D:\\IdeaProjects\\sanshao-auth" + "/src/main/java");
 
         gc.setAuthor("testjava");
         gc.setOpen(false);
@@ -31,7 +31,7 @@ public class CodeGenerator {
         mpg.setGlobalConfig(gc);
 
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/yu-auth?serverTimezone=GMT%2B8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/sanshao-auth?serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
@@ -39,7 +39,7 @@ public class CodeGenerator {
         mpg.setDataSource(dsc);
 
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.yu");
+        pc.setParent("com.sanshao");
 //        pc.setModuleName("service");
         pc.setController("controller");
         pc.setEntity("entity");
