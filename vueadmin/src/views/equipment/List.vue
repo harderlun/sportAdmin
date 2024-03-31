@@ -1,27 +1,30 @@
 <template>
   <div>
     <el-form :inline="true">
-      <el-form-item>
-        <el-input
-            v-model="searchForm.name"
-            placeholder="器材名称"
-            clearable
-        >
-        </el-input>
-      </el-form-item>
+        <!--
+              <el-form-item>
+                <el-input
+                    v-model="searchForm.name"
+                    placeholder="器材名称"
+                    clearable
+                >
+                </el-input>
+              </el-form-item>
 
+              <el-form-item>
+                <el-button @click="getEquipmentList">搜索</el-button>
+              </el-form-item>
+        -->
       <el-form-item>
-        <el-button @click="getEquipmentList">搜索</el-button>
+        <el-button type="primary" @click="dialogVisible = true" v-if="hasAuth('sys:equipment:add')">新增器材</el-button>
       </el-form-item>
-
-      <el-form-item>
-        <el-button type="primary" @click="dialogVisible = true" v-if="hasAuth('sys:equipment:save')">新增</el-button>
-      </el-form-item>
+      <!--
       <el-form-item>
         <el-popconfirm title="这是确定批量删除吗？" @confirm="delHandle(null)">
           <el-button type="danger" slot="reference" :disabled="delBtlStatus" v-if="hasAuth('sys:equipment:delete')">批量删除</el-button>
         </el-popconfirm>
       </el-form-item>
+      -->
     </el-form>
 
     <el-table
@@ -32,7 +35,7 @@
         border
         stripe
         @selection-change="handleSelectionChange">
-
+<!--
       <el-table-column
           type="selection"
           width="55">
@@ -43,7 +46,7 @@
           width="120"
           prop="id">
       </el-table-column>
-
+        -->
       <el-table-column
           label="器材名称"
           width="120"
@@ -62,8 +65,9 @@
       </el-table-column>
       <el-table-column
           prop="money"
-          label="器材金额">
+          label="器材金额(元/每个每天)">
       </el-table-column>
+        <!--
       <el-table-column
           prop="status"
           label="器材状态">
@@ -73,23 +77,26 @@
         </template>
 
       </el-table-column>
+
       <el-table-column
           prop="created"
           width="200"
           label="创建时间"
       >
       </el-table-column>
+      -->
       <el-table-column
           prop="icon"
           width="260px"
           label="操作">
 
         <template slot-scope="scope">
+
           <el-button type="text" v-if="hasAuth('sys:equipment:update')" @click="editHandle(scope.row.id)">编辑</el-button>
           <el-divider direction="vertical" v-if="hasAuth('sys:equipment:update')"></el-divider>
 
           <template>
-            <el-popconfirm title="这是一段内容确定删除吗？" v-if="hasAuth('sys:equipment:delete')" @confirm="delHandle(scope.row.id)">
+            <el-popconfirm title="确定删除吗？" v-if="hasAuth('sys:equipment:delete')" @confirm="delHandle(scope.row.id)">
               <el-button type="text" slot="reference">删除</el-button>
             </el-popconfirm>
           </template>
@@ -107,7 +114,7 @@
         :page-size="size"
         :total="total">
     </el-pagination>
-    <!--新增对话框-->
+
     <el-dialog
         title="提示"
         :visible.sync="dialogVisible"
@@ -206,12 +213,15 @@ export default {
       let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
       return (year + "-" + month + "-" + day);
     },
+    /*
     handleSelectionChange(val) {
       console.log("勾选")
       console.log(val)
       this.multipleSelection = val;
       this.delBtlStatus = val.length == 0
     },
+
+     */
 
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
@@ -254,11 +264,11 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$axios.post('/sys/equipment/' + (this.editForm.id?'update' : 'save'), this.editForm)
+          this.$axios.post('/sys/equipment/' + (this.editForm.id?'update' : 'add'), this.editForm)
               .then(res => {
                 this.$message({
                   showClose: true,
-                  message: '恭喜你，操作成功',
+                  message: '操作完成',
                   type: 'success',
                   onClose:() => {
                     this.getEquipmentList()
@@ -291,7 +301,7 @@ export default {
       this.$axios.post("/sys/equipment/delete", ids).then(res => {
         this.$message({
           showClose: true,
-          message: '恭喜你，操作成功',
+          message: '操作完成',
           type: 'success',
           onClose:() => {
             this.getEquipmentList()

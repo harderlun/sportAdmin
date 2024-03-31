@@ -8,8 +8,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  *  Mapper 接口
  * </p>
  *
- * @author testjava
- * @since 2023-05-23
  */
 public interface SysCompetitionMapper extends BaseMapper<SysCompetition> {
 

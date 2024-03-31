@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
  * <p>
  *  服务实现类
  * </p>
- *
- * @author testjava
- * @since 2023-05-18
  */
 @Service
 public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper, SysNotice> implements SysNoticeService {

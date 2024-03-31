@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
  *  服务实现类
  * </p>
  *
- * @author testjava
- * @since 2023-05-23
  */
 @Service
 public class SysCompensateServiceImpl extends ServiceImpl<SysCompensateMapper, SysCompensate> implements SysCompensateService {

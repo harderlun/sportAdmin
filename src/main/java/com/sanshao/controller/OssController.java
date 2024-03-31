@@ -24,10 +24,10 @@ public class OssController {
         String originalFilename = file.getOriginalFilename();
         int i = originalFilename.lastIndexOf(".");
         String png = originalFilename.substring(i);
-        String bucketName = "dbmanagement";
+        String bucketName = "liagnhua";
         String fileName = "itsource/" + UUID.randomUUID().toString().substring(0, 4) + png;
         ossClient.putObject(bucketName, fileName, file.getInputStream());
-        String url = "https://" + bucketName + ".oss-cn-shenzhen.aliyuncs.com" + "/" + fileName;
+        String url = "https://" + bucketName + ".oss-cn-beijing.aliyuncs.com" + "/" + fileName;
         System.out.println("上传成功返回的：" + url);
         return Result.ok().data("fileUrl",url);
     }

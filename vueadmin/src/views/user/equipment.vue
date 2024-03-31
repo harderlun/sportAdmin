@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-form :inline="true">
+      <!--
       <el-form-item>
         <el-input
             v-model="searchForm.name"
@@ -13,6 +14,7 @@
       <el-form-item>
         <el-button @click="getEquipmentList">搜索</el-button>
       </el-form-item>
+      -->
     </el-form>
 
     <el-table
@@ -40,8 +42,9 @@
 
       <el-table-column
           prop="money"
-          label="器材金额(元/天)">
+          label="器材金额(元/每个每天)">
       </el-table-column>
+<!--
       <el-table-column
           prop="icon"
           label="操作">
@@ -49,7 +52,7 @@
           <el-button type="text" @click="editHandle(scope.row.id)">租用</el-button>
         </template>
       </el-table-column>
-
+-->
     </el-table>
 
     <el-pagination
@@ -61,7 +64,8 @@
         :page-size="size"
         :total="total">
     </el-pagination>
-    <!--新增对话框-->
+
+    <!--新增对话框
     <el-dialog
         title="租用"
         :visible.sync="dialogVisible"
@@ -84,6 +88,7 @@
         <el-button type="primary" @click="submitForm()">确 定</el-button>
       </div>
     </el-dialog>
+    -->
   </div>
 </template>
 
@@ -163,7 +168,7 @@ export default {
       if (this.editForm.starttime.getTime() > this.editForm.endtime.getTime()){
         this.$message({
           showClose: true,
-          message: '租用时间有误',
+          message: '时间错误',
           type: 'error'
         });
         return;
@@ -171,7 +176,7 @@ export default {
       this.$axios.post('/borrow/save',this.editForm).then(res => {
         this.$message({
           showClose: true,
-          message: '恭喜你，操作成功,等待器材管理员审核',
+          message: '操作完成,请等待管理员审核',
           type: 'success',
           onClose:() => {
             this.getEquipmentList()

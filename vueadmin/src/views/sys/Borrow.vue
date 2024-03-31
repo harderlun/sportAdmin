@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-form :inline="true">
+      <!--
       <el-form-item>
         <el-input
             v-model="searchForm.username"
@@ -13,6 +14,7 @@
       <el-form-item>
         <el-button @click="getBorrowList">搜索</el-button>
       </el-form-item>
+      -->
     </el-form>
 
     <el-table

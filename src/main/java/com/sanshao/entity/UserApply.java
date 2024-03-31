@@ -56,4 +56,75 @@ public class UserApply implements Serializable {
     @TableField(exist = false)
     private Date competitionStartTime;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getCompetitionid() {
+        return competitionid;
+    }
+
+    public void setCompetitionid(Long competitionid) {
+        this.competitionid = competitionid;
+    }
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
+    }
+
+    public String getCompetitionName() {
+        return competitionName;
+    }
+
+    public void setCompetitionName(String competitionName) {
+        this.competitionName = competitionName;
+    }
+
+    public Date getCompetitionStartTime() {
+        return competitionStartTime;
+    }
+
+    public void setCompetitionStartTime(Date competitionStartTime) {
+        this.competitionStartTime = competitionStartTime;
+    }
 }

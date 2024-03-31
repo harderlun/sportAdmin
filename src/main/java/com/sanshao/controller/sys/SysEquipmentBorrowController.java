@@ -3,7 +3,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sanshao.common.lang.Result;
-import com.sanshao.entity.SysEquipment;
+import com.sanshao.entity.Equipment;
 import com.sanshao.entity.SysUser;
 import com.sanshao.entity.UserBorrow;
 import com.sanshao.entity.UserRepairs;
@@ -23,11 +23,11 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * 器材租用
+ * 器材的租用
  */
 @RestController
-@RequestMapping("/sys/borrow")
-public class SysBorrowController {
+//@RequestMapping("/sys/borrow")
+public class SysEquipmentBorrowController {
 
     @Autowired
     private HttpServletRequest request;
@@ -91,9 +91,9 @@ public class SysBorrowController {
     @PreAuthorize("hasAuthority('sys:borrow:list')")
     public Result passOrNotPass(@Validated @RequestBody UserBorrow userBorrow){
         if(userBorrow.getStatus() == 2){
-            SysEquipment equipment = sysEquipmentService.getById(userBorrow.getEquipmentid());
+            Equipment equipment = sysEquipmentService.getById(userBorrow.getEquipmentid());
             equipment.setSurplus(equipment.getSurplus() + userBorrow.getNumber());
-            sysEquipmentService.save(equipment);
+            sysEquipmentService.updateById(equipment);
         }
         boolean flag = userBorrowService.updateById(userBorrow);
         return flag ? Result.ok() : Result.error();
@@ -115,7 +115,7 @@ public class SysBorrowController {
     public Result back(@PathVariable("id") Long id) throws IOException {
         UserBorrow borrow = userBorrowService.getById(id);
         borrow.setStatus(4);
-        SysEquipment equipment = sysEquipmentService.getById(borrow.getEquipmentid());
+        Equipment equipment = sysEquipmentService.getById(borrow.getEquipmentid());
         equipment.setSurplus(equipment.getSurplus() + borrow.getNumber());
         boolean flag = userBorrowService.updateById(borrow) && sysEquipmentService.updateById(equipment);
         return flag ? Result.ok() : Result.error();

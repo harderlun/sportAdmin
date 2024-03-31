@@ -45,5 +45,51 @@ public class UserRepairs implements Serializable {
     @ApiModelProperty(value = "报修用户id")
     private Long userid;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getRepairReason() {
+        return repairReason;
+    }
+
+    public void setRepairReason(String repairReason) {
+        this.repairReason = repairReason;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Long getBorrowid() {
+        return borrowid;
+    }
+
+    public void setBorrowid(Long borrowid) {
+        this.borrowid = borrowid;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
 }

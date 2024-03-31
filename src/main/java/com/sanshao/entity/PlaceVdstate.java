@@ -36,4 +36,43 @@ public class PlaceVdstate implements Serializable {
     @TableField(exist = false)
     private String placeName;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getPlaceid() {
+        return placeid;
+    }
+
+    public void setPlaceid(Long placeid) {
+        this.placeid = placeid;
+    }
+
+    public Date getVdstatedate() {
+        return vdstatedate;
+    }
+
+    public void setVdstatedate(Date vdstatedate) {
+        this.vdstatedate = vdstatedate;
+    }
+
+    public String getVdstatest() {
+        return vdstatest;
+    }
+
+    public void setVdstatest(String vdstatest) {
+        this.vdstatest = vdstatest;
+    }
+
+    public String getPlaceName() {
+        return placeName;
+    }
+
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
+    }
 }

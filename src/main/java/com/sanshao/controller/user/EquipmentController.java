@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sanshao.common.lang.Result;
-import com.sanshao.entity.SysEquipment;
+import com.sanshao.entity.Equipment;
 import com.sanshao.service.SysEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -34,7 +34,7 @@ public class EquipmentController {
 
     @GetMapping("list")
     public Result list(String competitionName) {
-        Page<SysEquipment> pageData = sysEquipmentService.page(getPage(),new LambdaQueryWrapper<SysEquipment>().eq(SysEquipment::getStatus,0).like(StrUtil.isNotBlank(competitionName), SysEquipment::getName,competitionName));
+        Page<Equipment> pageData = sysEquipmentService.page(getPage(),new LambdaQueryWrapper<Equipment>().eq(Equipment::getStatus,0).like(StrUtil.isNotBlank(competitionName), Equipment::getName,competitionName));
         return Result.ok().data("pageData",pageData);
     }
 }

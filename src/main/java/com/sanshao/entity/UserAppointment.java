@@ -63,4 +63,107 @@ public class UserAppointment implements Serializable {
     private int radio;
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
+
+    public Long getPlaceid() {
+        return placeid;
+    }
+
+    public void setPlaceid(Long placeid) {
+        this.placeid = placeid;
+    }
+
+    public Date getOrderdate() {
+        return orderdate;
+    }
+
+    public void setOrderdate(Date orderdate) {
+        this.orderdate = orderdate;
+    }
+
+    public Integer getOrderstart() {
+        return orderstart;
+    }
+
+    public void setOrderstart(Integer orderstart) {
+        this.orderstart = orderstart;
+    }
+
+    public Integer getOrderend() {
+        return orderend;
+    }
+
+    public void setOrderend(Integer orderend) {
+        this.orderend = orderend;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Long getPlaceStateId() {
+        return placeStateId;
+    }
+
+    public void setPlaceStateId(Long placeStateId) {
+        this.placeStateId = placeStateId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPlaceName() {
+        return placeName;
+    }
+
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
+    }
+
+    public int getRadio() {
+        return radio;
+    }
+
+    public void setRadio(int radio) {
+        this.radio = radio;
+    }
 }

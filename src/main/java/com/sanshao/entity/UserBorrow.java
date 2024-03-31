@@ -10,14 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author testjava
- * @since 2023-05-21
- */
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="UserBorrow对象", description="")
@@ -66,4 +59,100 @@ public class UserBorrow implements Serializable {
 
     @TableField(exist = false)
     private Integer repairsStatus;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
+
+    public Long getEquipmentid() {
+        return equipmentid;
+    }
+
+    public void setEquipmentid(Long equipmentid) {
+        this.equipmentid = equipmentid;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public Long getTotalmoney() {
+        return totalmoney;
+    }
+
+    public void setTotalmoney(Long totalmoney) {
+        this.totalmoney = totalmoney;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(Date starttime) {
+        this.starttime = starttime;
+    }
+
+    public Date getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEquipmentName() {
+        return equipmentName;
+    }
+
+    public void setEquipmentName(String equipmentName) {
+        this.equipmentName = equipmentName;
+    }
+
+    public Integer getRepairsStatus() {
+        return repairsStatus;
+    }
+
+    public void setRepairsStatus(Integer repairsStatus) {
+        this.repairsStatus = repairsStatus;
+    }
 }

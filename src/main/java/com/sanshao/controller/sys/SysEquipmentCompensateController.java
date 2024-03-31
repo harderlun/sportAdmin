@@ -21,7 +21,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/sys/compensate")
-public class SysCompensateController {
+public class SysEquipmentCompensateController {
 
     @Autowired
     private SysCompensateService sysCompensateService;
