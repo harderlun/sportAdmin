@@ -19,7 +19,6 @@ public class OssController {
     @Autowired
     private OSS ossClient;
 
-
     @PostMapping("/upload/img")
     public Result upload(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();

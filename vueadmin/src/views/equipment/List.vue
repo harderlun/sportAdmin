@@ -92,7 +92,6 @@
 
         <template slot-scope="scope">
 
-
           <el-button type="text" v-if="hasAuth('sys:equipment:update')" @click="editHandle(scope.row.id)">编辑</el-button>
           <el-divider direction="vertical" v-if="hasAuth('sys:equipment:update')"></el-divider>
 
