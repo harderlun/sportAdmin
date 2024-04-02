@@ -12,6 +12,7 @@
         </template>
       </el-menu-item>
     </router-link>
+
     <router-link to="/user/equipment">
       <el-menu-item index="equipment" @click="selectMenu({name: 'equipment',title: '器材列表'})">
         <i class="el-icon-basketball"></i>
@@ -36,6 +37,7 @@
         </template>
       </el-menu-item>
     </router-link>
+
     <el-submenu :index="menu.name" v-for="(menu,index) in menuList" :key="index">
       <template slot="title">
         <i :class="menu.icon"></i>

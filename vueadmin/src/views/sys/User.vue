@@ -133,7 +133,7 @@
         <el-form-item label="用户名" prop="username" label-width="100px">
           <el-input v-model="editForm.username" autocomplete="off"></el-input>
           <el-alert
-              title="初始密码为888888"
+              title="初始密码为123456"
               :closable="false"
               type="info"
               style="line-height: 12px;"

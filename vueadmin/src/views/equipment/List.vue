@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-form :inline="true">
-        <!--
+
               <el-form-item>
                 <el-input
                     v-model="searchForm.name"
@@ -14,7 +14,7 @@
               <el-form-item>
                 <el-button @click="getEquipmentList">搜索</el-button>
               </el-form-item>
-        -->
+
       <el-form-item>
         <el-button type="primary" @click="dialogVisible = true" v-if="hasAuth('sys:equipment:add')">新增器材</el-button>
       </el-form-item>
@@ -67,7 +67,7 @@
           prop="money"
           label="器材金额(元/每个每天)">
       </el-table-column>
-        <!--
+
       <el-table-column
           prop="status"
           label="器材状态">
@@ -84,7 +84,7 @@
           label="创建时间"
       >
       </el-table-column>
-      -->
+
       <el-table-column
           prop="icon"
           width="260px"

@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-    <canvas id="draw" style="position: fixed; width: 100vw; height: 100vh; z-index: 0; display: block">
-      当前浏览器不支持Canvas，请更换浏览器后再试
-    </canvas>
+
+<!--    <canvas id="draw" style="position: fixed; width: 100vw; height: 100vh; z-index: 0; display: block">-->
+<!--      当前浏览器不支持Canvas，请更换浏览器后再试-->
+<!--    </canvas>-->
     <el-row type="flex" class="row-bg loginBox" justify="center">
       <!-- <el-col :xl="6" :lg="7">
         <div id="top">

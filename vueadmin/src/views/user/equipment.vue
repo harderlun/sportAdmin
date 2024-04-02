@@ -44,7 +44,7 @@
           prop="money"
           label="器材金额(元/每个每天)">
       </el-table-column>
-<!--
+
       <el-table-column
           prop="icon"
           label="操作">
@@ -52,7 +52,7 @@
           <el-button type="text" @click="editHandle(scope.row.id)">租用</el-button>
         </template>
       </el-table-column>
--->
+
     </el-table>
 
     <el-pagination
@@ -65,7 +65,7 @@
         :total="total">
     </el-pagination>
 
-    <!--新增对话框
+    <!--新增对话框-->
     <el-dialog
         title="租用"
         :visible.sync="dialogVisible"
@@ -88,7 +88,7 @@
         <el-button type="primary" @click="submitForm()">确 定</el-button>
       </div>
     </el-dialog>
-    -->
+
   </div>
 </template>
 

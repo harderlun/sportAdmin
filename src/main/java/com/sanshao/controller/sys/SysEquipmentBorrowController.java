@@ -26,7 +26,7 @@ import java.util.List;
  * 器材的租用
  */
 @RestController
-//@RequestMapping("/sys/borrow")
+@RequestMapping("/sys/borrow")
 public class SysEquipmentBorrowController {
 
     @Autowired

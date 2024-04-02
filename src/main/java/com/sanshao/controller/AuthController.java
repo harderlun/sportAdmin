@@ -39,9 +39,13 @@ public class AuthController {
     @GetMapping("/captcha")
     public Result captcha() throws IOException {
         String key = UUID.randomUUID().toString();
+
         String code = producer.createText();
+
         BufferedImage image = producer.createImage(code);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+
         ImageIO.write(image,"jpg",outputStream);
         BASE64Encoder encoder = new BASE64Encoder();
         String str = "data:image/jpeg;base64,";

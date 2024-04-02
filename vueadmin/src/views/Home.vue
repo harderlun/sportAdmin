@@ -42,10 +42,10 @@
                 <el-dropdown-item>
                   <router-link to="/userCenter">个人中心</router-link>
                 </el-dropdown-item>
-                <!-- 
+
                 <el-dropdown-item>
                   <router-link to='/user/order'>我的订单</router-link>
-                </el-dropdown-item> -->
+                </el-dropdown-item>
 
                 <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
               </el-dropdown-menu>
