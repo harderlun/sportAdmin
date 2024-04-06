@@ -1,4 +1,4 @@
-<!-- <template>
+ <template>
   <div id="main">
     <noticeComponent v-if="notice" :text="notice" @click="openTip" />
     <div class="left-notice">
@@ -582,7 +582,5 @@ export default {
   float: left;
   margin-left: 40px;
 }
-</style> -->
-<template>
-  <div><h1>欢迎使用广东海洋大学体育馆管理系统!!</h1></div>
-</template>
+</style>
+

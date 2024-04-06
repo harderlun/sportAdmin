@@ -7,7 +7,7 @@
       <el-header>
         <div style="display: flex; align-items: center; overflow: hidden;">
           <Tabs style="width: 1200px;"></Tabs>
-          <!-- <el-popover placement="bottom" width="400" trigger="hover">
+          <el-popover placement="bottom" width="400" trigger="hover">
             <div class="notice_item" v-for="notice in (this.borrowList.length > 0 ? this.borrowList : this.compensateList)" :key="notice">
               <div v-if="notice.equipmentid">
                 <span class="info">
@@ -31,7 +31,7 @@
                 <i class="el-icon-message-solid" style="width: 25px;"></i>
               </el-badge>
             </el-button>
-          </el-popover> -->
+          </el-popover>
           <div class="header-avatar">
             <el-avatar size="medium" :src="userInfo.avatar"></el-avatar>
             <el-dropdown>
@@ -42,10 +42,10 @@
                 <el-dropdown-item>
                   <router-link to="/userCenter">个人中心</router-link>
                 </el-dropdown-item>
-                <!-- 
+
                 <el-dropdown-item>
                   <router-link to='/user/order'>我的订单</router-link>
-                </el-dropdown-item> -->
+                </el-dropdown-item>
 
                 <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
               </el-dropdown-menu>
