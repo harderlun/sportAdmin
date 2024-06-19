@@ -17,42 +17,21 @@
       -->
     </el-form>
 
-    <el-table
-        ref="multipleTable"
-        :data="tableData"
-        tooltip-effect="dark"
-        style="width: 100%"
-        border
-        stripe>
+    <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%" border stripe>
 
-      <el-table-column
-          label="租借用户名"
-          width="110"
-          prop="username">
+      <el-table-column label="租借用户名" width="110" prop="username">
       </el-table-column>
 
-      <el-table-column
-          prop="equipmentName"
-          label="租借器材"
-          width="110">
+      <el-table-column prop="equipmentName" label="租借器材" width="110">
       </el-table-column>
 
-      <el-table-column
-          prop="number"
-          label="数量"
-          width="110">
+      <el-table-column prop="number" label="数量" width="110">
       </el-table-column>
 
-      <el-table-column
-          prop="totalmoney"
-          label="租用总金额"
-          width="110">
+      <el-table-column prop="totalmoney" label="租用总金额" width="110">
       </el-table-column>
 
-      <el-table-column
-          prop="status"
-          label="租借状态"
-          width="220">
+      <el-table-column prop="status" label="租借状态" width="220">
         <template slot-scope="scope">
           <el-tag size="small" v-if="scope.row.status === 0" type="info">待审批</el-tag>
           <el-tag size="small" v-else-if="scope.row.status === 1" type="success">通过</el-tag>
@@ -63,21 +42,11 @@
         </template>
 
       </el-table-column>
-      <el-table-column
-          prop="starttime"
-          width="200"
-          label="租用开始时间"
-      >
+      <el-table-column prop="starttime" width="200" label="租用开始时间">
       </el-table-column>
-      <el-table-column
-          prop="endtime"
-          width="200"
-          label="租用结束时间"
-      >
+      <el-table-column prop="endtime" width="200" label="租用结束时间">
       </el-table-column>
-      <el-table-column
-          prop="icon"
-          label="操作">
+      <el-table-column prop="icon" label="操作">
 
         <template slot-scope="scope">
           <el-button type="text" v-if="hasAuth('sys:borrow:approve') && scope.row.status === 0" @click="editHandle(scope.row.id)">审批</el-button>
@@ -91,11 +60,7 @@
 
     </el-table>
 
-    <el-dialog
-        title="器材审批"
-        :visible.sync="dialogVisible"
-        width="600px"
-        :before-close="handleClose">
+    <el-dialog title="器材审批" :visible.sync="dialogVisible" width="600px" :before-close="handleClose">
 
       <el-form :model="editForm">
         <el-form-item label="租用数量" label-width="100px">
@@ -120,15 +85,11 @@
       </div>
     </el-dialog>
 
-    <el-dialog
-        title="损坏"
-        :visible.sync="badFlag"
-        width="600px"
-        :before-close="handleClose">
+    <el-dialog title="损坏" :visible.sync="badFlag" width="600px" :before-close="handleClose">
 
       <el-form :model="badForm">
         <el-form-item label="赔偿金额" label-width="100px">
-          <el-input v-model="badForm.price" ></el-input>
+          <el-input v-model="badForm.price"></el-input>
         </el-form-item>
         <el-form-item label="赔偿原因" label-width="100px">
           <el-input v-model="badForm.reason"></el-input>
@@ -140,14 +101,7 @@
       </div>
     </el-dialog>
 
-    <el-pagination style="margin-top: 10px;"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        layout="total, sizes, prev, pager, next, jumper"
-        :page-sizes="[10, 20, 50, 100]"
-        :current-page="current"
-        :page-size="size"
-        :total="total">
+    <el-pagination style="margin-top: 10px;" @size-change="handleSizeChange" @current-change="handleCurrentChange" layout="total, sizes, prev, pager, next, jumper" :page-sizes="[10, 20, 50, 100]" :current-page="current" :page-size="size" :total="total">
     </el-pagination>
   </div>
 </template>
@@ -155,7 +109,7 @@
 <script>
 export default {
   name: "Borrow",
-  data() {
+  data () {
     return {
       searchForm: {},
       delBtlStatus: true,
@@ -171,11 +125,11 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.getBorrowList();
   },
   methods: {
-    repair(id){
+    repair (id) {
       this.$confirm('此操作已修复该器材, 是否继续?', '修复', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -185,7 +139,7 @@ export default {
           this.$message({
             type: 'success',
             message: '修复成功!',
-            onClose:() => {
+            onClose: () => {
               this.getBorrowList()
             }
           });
@@ -197,25 +151,25 @@ export default {
         });
       });
     },
-    bad(id,userId){
+    bad (id, userId) {
       this.badForm.borrowid = id;
       this.badForm.userid = userId;
       this.badFlag = true;
     },
-    submitBad(){
-      this.$axios.post("/sys/compensate/save",this.badForm).then(res => {
+    submitBad () {
+      this.$axios.post("/sys/compensate/save", this.badForm).then(res => {
         this.$message({
           showClose: true,
           message: '恭喜你，操作成功',
           type: 'success',
-          onClose:() => {
+          onClose: () => {
             this.getBorrowList()
           }
         });
         this.badFlag = false
       })
     },
-    back(id){
+    back (id) {
       this.$confirm('此操作将回收该器材, 是否继续?', '回收', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -225,7 +179,7 @@ export default {
           this.$message({
             type: 'success',
             message: '回收成功!',
-            onClose:() => {
+            onClose: () => {
               this.getBorrowList()
             }
           });
@@ -237,39 +191,39 @@ export default {
         });
       });
     },
-    dateFormat(time) {
+    dateFormat (time) {
       let date = new Date(time);
       let year = date.getFullYear();
       let month =
-          date.getMonth() + 1 < 10
-              ? "0" + (date.getMonth() + 1)
-              : date.getMonth() + 1;
+        date.getMonth() + 1 < 10
+          ? "0" + (date.getMonth() + 1)
+          : date.getMonth() + 1;
       let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
       return (year + "-" + month + "-" + day);
     },
-    handleSizeChange(val) {
+    handleSizeChange (val) {
       console.log(`每页 ${val} 条`);
       this.size = val
       this.getBorrowList()
     },
-    handleCurrentChange(val) {
+    handleCurrentChange (val) {
       console.log(`当前页: ${val}`);
       this.current = val
       this.getBorrowList()
     },
 
-    resetForm() {
+    resetForm () {
       this.dialogVisible = false;
       this.badFlag = false;
       this.editForm = {}
       this.badForm = {}
       this.badForm.reason = '损坏器材'
     },
-    handleClose() {
+    handleClose () {
       this.resetForm();
     },
 
-    getBorrowList() {
+    getBorrowList () {
       this.$axios.get("/sys/borrow/list", {
         params: {
           username: this.searchForm.username,
@@ -288,8 +242,8 @@ export default {
       })
     },
 
-    submitForm() {
-      if (this.editForm.status === 0){
+    submitForm () {
+      if (this.editForm.status === 0) {
         this.$message({
           showClose: true,
           message: '请选择审批操作',
@@ -298,19 +252,19 @@ export default {
         return;
       }
       this.$axios.post('/sys/borrow/passOrNotPass', this.editForm)
-          .then(res => {
-            this.$message({
-              showClose: true,
-              message: '恭喜你，操作成功',
-              type: 'success',
-              onClose:() => {
-                this.getBorrowList()
-              }
-            });
-            this.dialogVisible = false
-          })
+        .then(res => {
+          this.$message({
+            showClose: true,
+            message: '恭喜你，操作成功',
+            type: 'success',
+            onClose: () => {
+              this.getBorrowList()
+            }
+          });
+          this.dialogVisible = false
+        })
     },
-    editHandle(id) {
+    editHandle (id) {
       this.$axios.get('/sys/borrow/info/' + id).then(res => {
         this.editForm = res.data.data.info
         this.dialogVisible = true
@@ -321,5 +275,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
